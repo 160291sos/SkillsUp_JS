@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+  <body>
+
+    <h2>JavaScript while</h2>
+
+    <script>
+      var counter = 5;
+      var password = "Pass";
+      var userInput = prompt("Enter your password", "");
+      if (userInput == password) {
+        alert("You successfully logged in!");
+      } else if (userInput !== password) {
+        while (userInput !== password) {
+          userInput = prompt("Your password is incorrect, try again. You have " + counter + " attempts", "");
+          counter = counter - 1;
+          if (counter === 0) break;
+          else if (userInput == null) break;
+
+        }
+        if (userInput === password) {
+          alert("You successfully logged in!");
+        } else if (userInput == null) {
+          alert("Access is denied!");
+        } else {
+          alert("Try later.");
+        }
+      }
+
+    </script>
+
+  </body>
+
+</html>
