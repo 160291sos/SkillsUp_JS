@@ -3,19 +3,21 @@
 
   <body>
     <script>
-   var factorial = 1;
-   var userInput = prompt("Enter any number", "");
-   var userInputNumber = parseInt(userInput);
-   if (isNaN(userInputNumber)){
-   alert("It's not a number");
-   }
-   else {
-   	for (var i = 1; i <= userInputNumber; i++){
-    factorial = factorial * i;
-    }
-    document.write("Factorial of number "+ userInputNumber + " is "+ factorial);
-   }
-    
-      </script>
-      </body>
-      </html>
+      var factorial = 1;
+      var userInput = prompt("Enter any number", "");
+      var userInputNumber = parseInt(userInput);
+      if (isNaN(userInputNumber)) {
+        alert("It's not a number");
+      } else if (userInputNumber < 0) {
+        alert("Enter a number > 0")
+      } else {
+        for (var i = 1; i <= userInputNumber; i++) {
+          factorial = factorial * i;
+        }
+        document.write("Factorial of number " + userInputNumber + " is " + factorial);
+      }
+
+    </script>
+  </body>
+
+</html>
