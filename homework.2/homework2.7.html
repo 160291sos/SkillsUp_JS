@@ -15,9 +15,9 @@
         while (userInput !== password) {
           userInput = prompt("Your password is incorrect, try again. You have " + counter + " attempts", "");
           counter = counter - 1;
-          if (counter === 0) break;
-          else if (userInput == null) break;
-
+          if (counter === 0 || userInput == null) {
+            break;
+          }
         }
         if (userInput === password) {
           alert("You successfully logged in!");
