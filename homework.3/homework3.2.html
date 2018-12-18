@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+  <body>
+    <script>
+var userInput = prompt("Write your email");
+var dogIndex = userInput.indexOf("@");
+var starsForReplace = "*";
+var partStarStr = "";
+for(i=0; i< dogIndex; i++){
+  
+  partStarStr = partStarStr + starsForReplace;
+}
+var emailAfterDog = userInput.substring(dogIndex, userInput.length);
+alert(partStarStr + emailAfterDog);
+
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+  <body>
+    <script>
+var min = 0;
+var max = 100;
+var counter = 5;
+var random = Math.floor(Math.random() * (max - min));
+  console.log(random);
+var userInputOptions = "";
+
+var userInput = parseFloat(prompt("Your computer made a number from 0 to 100. Try to guess it. Enter your option"));
+if (userInput > 100 || userInput < 0 || isFinite(userInput)==false){
+  alert("You entered an invalid number. Enter a number from 0 to 100");
+} else if (userInput!==random){ 
+  while (userInput!==random){
+      if (userInput<random){
+        alert("You did not guess. Hidden number is greater then " + userInput);
+        userInputOptions = userInputOptions + userInput + ",";
+        userInput = parseFloat(prompt("Enter your option. You have " + counter + " attempts. Your number: " + userInputOptions));
+        counter = counter - 1;       
+        if (counter===0)break;
+        else if (isFinite(userInput)==false){
+          alert("Error. Incorect input");
+          break;
+        }
+      }else if (userInput>random){
+        alert("You did not guess. Hidden number is less then " + userInput);
+        userInputOptions = userInputOptions + userInput + ",";
+      userInput = parseFloat(prompt("Enter your option. You have " + counter + " attempts. Your number: " + userInputOptions));
+        counter = counter - 1;
+        if (counter===0)break;
+        else if (isFinite(userInput)==false){
+          alert("Error. Incorect input");
+          break;
+        }
+      }
+      }if (userInput===random){
+          alert("You guessed");
+      }
+}else if (userInput===random){
+          alert("You guessed");
+       }
+    </script>
+  </body>
+
+</html>

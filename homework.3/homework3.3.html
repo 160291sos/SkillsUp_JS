@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+  <body>
+    <script>
+var userInputText = prompt("Write your text");
+var userInputMaxLength = parseInt(prompt("Write max lenght for text"));
+  if(userInputText.length>userInputMaxLength){
+   alert(userInputText.substring(0, userInputMaxLength-3) + "...");
+  } else if (userInputMaxLength<4){
+    alert("...");
+  }else{
+    alert(userInputText);
+  }
+
+    </script>
+  </body>
+
+</html>

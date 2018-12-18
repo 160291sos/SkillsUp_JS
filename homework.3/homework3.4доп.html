@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+  <body>
+    <script>
+var userInput = prompt("Write your text");
+var userInputWords = userInput.split(" ");
+var userInputWordsUpperCase = "";
+var userInputWordsLowerCase = "";
+var userInputCamelText = "";
+    for(var i = 0; i<userInputWords.length; i++){
+      if (i%2 == 0){
+      userInputWordsUpperCase = userInputWords[i];
+      userInputCamelText = userInputCamelText + userInputWordsUpperCase.toUpperCase() + " ";
+      }else {
+        userInputWordsLowerCase = userInputWords[i];
+        userInputCamelText = userInputCamelText + userInputWordsUpperCase.toLowerCase() + " ";
+      }
+    }
+    alert(userInputCamelText);
+    </script>
+  </body>
+
+</html>

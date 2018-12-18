@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+  <body>
+    <script>
+ var userInput = prompt("Write your email");
+var count = 0;
+var dog = dogForLoop = userInput.indexOf("@");
+var dot = userInput.lastIndexOf(".");
+     
+    while (dogForLoop !== -1){
+      count++;
+    dogForLoop = userInput.indexOf("@", dogForLoop+1)
+    }
+     if (count>=2 || count === 0){
+        alert("Email " + userInput + " is NOT valid");
+    } else if (dog === 0 || dot === dog+1 || (dot-dog)<=1){
+      alert("Email " + userInput + " is NOT valid");
+    } else {
+    alert("Email " + userInput + " is valid");
+    }
+
+    </script>
+  </body>
+
+</html>
