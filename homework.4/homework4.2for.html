@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+  <body>
+    <script>
+ function filterRange(arr, a, b) {
+    var newArr = [];
+  for (i = 0; i<=arr.length-1; i++){
+    if(arr[i]>a && arr[i]<=b){
+      newArr.push(arr[i])
+    }
+  }
+    return newArr;
+  }
+  var arr = [1, 5, 2, 8, 5, 7, 16, 9];
+
+  var filtered1 = filterRange(arr, 4, 9);
+  console.log(filtered1);
+  var filtered2 = filterRange(arr, 10, 15);
+  console.log(filtered2);
+
+    </script>
+  </body>
+
+</html>

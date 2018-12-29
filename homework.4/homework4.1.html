@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+  <body>
+    <script>
+  function arrayAverage(arr) {
+    var sum = 0;
+    var count = 0;
+    var arithmeticMean = 0;
+  for (i = 0; i<=arr.length-1; i++){
+    if (typeof arr[i] === "number"){
+    sum += arr[i];
+    count++
+    }
+  }
+    arithmeticMean = sum/count;
+    return arithmeticMean;
+  }
+  var array = [4, 67, 23, 6, 10,  , 15, 22, "jhd"];
+  console.log(arrayAverage(array));
+
+    </script>
+  </body>
+
+</html>
