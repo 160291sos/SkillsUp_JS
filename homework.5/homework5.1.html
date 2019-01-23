@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>О себе</title>
+  
+  <style>
+    .list-item {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div id="content">
+    <h1>О себе</h1>
+
+    <ul id="list">
+      <li>Ник: <span id="nickname"></span>
+      <li>Любимые фильмы:  <span id="favorite-movies"></span>
+      <li>Хобби: <span id="hobbies"></span>
+      <li>Родной город: <span id="hometown"></span>
+     </ul>
+
+    <button onClick="tellAboutMyself()">Рассказать о себе</button>
+  </div>
+  <script>
+    function tellAboutMyself() {
+      var nickname = document.getElementById("nickname");
+          nickname.innerHTML = "sos";
+      var favoriteMovies = document.getElementById("favorite-movies");
+          favoriteMovies.innerHTML = "Harry Potter";
+      var hometown = document.getElementById("hometown");
+          hometown.innerHTML = "Dnipro";
+      
+      changeColorOfList ();
+      document.getElementById("content").style.font = "arial";
+      var button = document.getElementsByTagName('button');
+          button[0].disabled = true;
+    };
+    function changeColorOfList () {
+      var tegLi = document.getElementsByTagName('li');
+        for(var i = 0; i < tegLi.length; i++) {
+          tegLi[i].className = "list-item";
+        }
+    }
+    

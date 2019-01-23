@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+    <div class="number-form">
+    <h2>Enter your number</h2>
+      <div>
+        <input type="text" id="number" placeholder="your number"/>
+        <button onclick="onButtonClick()">Enter</button>
+      </div>
+    </div>  
+   
+    <script>
+      function onButtonClick (){
+     var nameValue = document.getElementById("number").value;
+        if (nameValue === ""){
+          var input = document.getElementById("number");
+              input.style.backgroundColor = "gray"
+        } else if (typeof +nameValue === "number" && +nameValue>=0 && +nameValue<=100){
+          var input = document.getElementById("number");
+              input.style.backgroundColor = "green"
+        } else {
+          var input = document.getElementById("number");
+              input.style.backgroundColor = "red"
+        }
+      }
+    </script>
+</body>
+</html>

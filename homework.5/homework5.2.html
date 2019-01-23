@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS dom-elemnt creation</title>
+  
+  <script>
+    document.getElementById("remove-phone-number").disabled = true;
+
+    function addPhoneNumber() {
+      var phoneNumbersContainer = document.getElementById("phoneNumbersContainer");
+      var phoneNumbersCount = phoneNumbersContainer.querySelectorAll("input[type=phone]").length;
+     
+     
+     console.log(phoneNumbersCount);
+      if (phoneNumbersCount > 0 && phoneNumbersCount < 5) {
+        var buttonRemove = document.getElementById("remove-phone-number");
+        buttonRemove.disabled = false;
+        var newPhoneNumber = document.createElement("input");
+        newPhoneNumber.type = "phone";
+        newPhoneNumber.placeholder = `Enter your phone number (${phoneNumbersCount + 1})`;
+        phoneNumbersContainer.appendChild(newPhoneNumber);
+      } else { 
+        var buttonAdd = document.getElementById("add-phone-number");
+          buttonAdd.disabled = true;
+      } 
+    }
+    
+    function removePhoneNumber() {
+       var phoneNumbersContainer = document.getElementById("phoneNumbersContainer");
+      var phoneNumbersCount = phoneNumbersContainer.querySelectorAll("input[type=phone]").length;
+      phoneNumbersContainer.removeChild(phoneNumbersContainer.lastChild);
+      console.log(phoneNumbersCount);
+      if (phoneNumbersCount-1 === 1) {
+        var buttonRemove = document.getElementById("remove-phone-number");
+          buttonRemove.disabled = true;
+      } else {
+        var buttonRemove = document.getElementById("remove-phone-number");
+        buttonRemove.disabled = false;
+        var buttonAdd = document.getElementById("add-phone-number");
+          buttonAdd.disabled = false;
+      }
+    }
+  </script>
+</head>
+<body>
+  <div>
+    <div>
+      <div class="container">
+      <label>First name</label>
+      <input type="text"
+             placeholder="Enter first name"
+             name="firstName">
+
+      <label>Last name</label>
+      <input type="password" 
+             placeholder="Enter last name"
+             name="lastName">
+      
+      <label>Phone numbers</label>
+      <div>
+        <div id="phoneNumbersContainer">
+        <input type="phone" 
+               placeholder="Enter your phone number (1)"
+               name="phoneNumber"
+        >
+        </div>
+      <button id="add-phone-number" class="Button" onclick="addPhoneNumber()">Add more (+)</button>
+      <button id="remove-phone-number" class="Button" onclick="removePhoneNumber()" >Remove (-)</button>
+      </div>
+      
+      <button class="Button Button-submit">Submit</button>
+    </div>
+     
+    </div>
+  </div>
+</body>
+</html>
