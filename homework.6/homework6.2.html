@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+.img {
+  background-image: url(https://petsi.net/images/dogbreed/big/12.jpg);
+  width: 350px;
+	height: 280px;
+}
+.img2{
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsZz_qehENd0LP3-2-mjgMalWEUtqOPxDVMNtw39AKI2OqLhfT);
+  width: 350px;
+	height: 280px;
+  background-size: cover;
+}
+</style>
+</head>
+<body>
+<div class = "img">
+  </div>
+</body>
+  <script>
+   
+    function changeImg (e){
+      if (e.type == 'mouseout') {
+        body[0].className ="img2";
+      }else if (e.type == 'mouseover') {
+         body[0].className ="img";
+      }
+    }
+    
+    var body = document.getElementsByTagName("div");
+        body[0].onmouseover = body[0].onmouseout = changeImg
+  </script>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+.color{
+  color: pink
+}
+.uncolor {
+}
+</style>
+</head>
+<body>
+  <h1>My list</h1>
+<ul>
+  <li>Point 1</li>
+  <li>Point 2</li>
+  <li>Point 3</li>
+  <li>Point 4</li>
+</body>
+<script>
+  function changeOnClick (e){
+    
+ if (e.target.className === "color"){
+    e.target.className="uncolor";
+  }else{
+  var ellemWhithClass = document.getElementsByClassName('color');
+   if (!e.ctrlKey) {
+     console.log("елементов колор = " + ellemWhithClass.length )
+     var iterCount = ellemWhithClass.length;
+     for (var i = 0; i<iterCount; i++){
+      console.log("елемент " + i +  " = " + ellemWhithClass[i] )
+if (ellemWhithClass[i] != undefined)
+       ellemWhithClass[i].className="uncolor" 
+   }
+  }
+    e.target.className="color";
+  } 
+  }
+  var body = document.getElementsByTagName("body");
+  body[0].onclick = changeOnClick;
+  </script>
+</html>
