@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+        ul li {
+            cursor: pointer;
+            position: relative;
+            padding: 12px 8px 12px 140px;
+            background: #eee;
+            font-size: 18px;
+            transition: 0.2s;
+
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        ul li:nth-child(odd) {
+            background: #f9f9f9;
+        }
+        ul li:hover {
+            background: #ddd;
+        }
+        ul li.checked {
+            background: #888;
+            color: #fff;
+            text-decoration: line-through;
+        }
+        ul li.checked::before {
+            content: '';
+            position: absolute;
+            border-color: #fff;
+            border-style: solid;
+            border-width: 0 2px 2px 0;
+            top: 10px;
+            left: 16px;
+            transform: rotate(45deg);
+            height: 15px;
+            width: 7px;
+        }
+        .close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 12px 16px;
+        }
+        .priority {
+            position: absolute;
+            left: 40px;
+            top: 0;
+            height: 45px;
+            width: 70px;
+            padding-top: 10px;
+            text-align: center;
+            background-color: ;
+        }
+        .priority.checked {
+            text-decoration: line-through;
+        }
+        .close:hover {
+            background-color: #f44336;
+            color: white;
+        }
+        .header {
+            background-color: #f44336;
+            padding: 30px 40px;
+            color: white;
+            text-align: center;
+        }
+        .header:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        input {
+            margin: 0;
+            border: none;
+            border-radius: 0;
+            width: 60%;
+            padding: 10px;
+            float: left;
+            font-size: 16px;
+        }
+        select {
+            width: 20%;
+            float: left;
+            padding: 9px;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 0;
+            margin: 0;
+        }
+        .addBtn {
+            padding: 10px;
+            width: 20%;
+            background: #d9d9d9;
+            color: #555;
+            float: left;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 0;
+        }
+
+        .addBtn:hover {
+            background-color: #bbb;
+        }
+    </style>
+</head>
+<body>
+<div id="myDIV" class="header">
+    <h2>To Do List</h2>
+    <input type="text" id="myInput" >
+    <select id="priority">
+        <option id="1">critical</option>
+        <option id="2">major</option>
+        <option id="3" >minor</option>
+        <option id="4">trivial</option>
+    </select>
+    <span onclick="newElement()" class="addBtn">Add</span>
+
+</div>
+<ul id="myUL">
+    <script>
+
+        var todo_list = [];
+        var count = 0;
+
+        var pro_array = ['critical','major','minor', 'trivial'];
+
+        function saveAtLocalStorage (todo_list){
+            var JsonObj = JSON.stringify(todo_list);
+            localStorage.setItem("myToDoList", JsonObj);
+        }
+
+        document.addEventListener("DOMContentLoaded", onloadPage());
+        document.addEventListener('click', changeElem());
+
+        function onloadPage () {
+            var localValue = localStorage.getItem('myToDoList');
+            if (localValue){
+                todo_list = JSON.parse(localValue);
+                count = todo_list.length;
+                printList(todo_list);
+            }
+            return;
+        }
+
+
+        var myNodelist = document.getElementsByTagName("LI");
+        var close = document.getElementsByClassName("close");
+        var list = document.querySelector('ul');
+
+        function getNextTasckId (){
+            count = count +1;
+            return count;
+        }
+        function newElement() {
+            var inputValue = document.getElementById("myInput").value;
+            var pro = document.getElementById('priority').value;
+
+            todo_list.push(
+                {
+                    priority : pro,
+                    task : inputValue,
+                    id : getNextTasckId (),
+                    isFinish : false
+                }
+            );
+            var priorities =
+                {
+                    'critical' : 0,
+                    'major' : 1,
+                    'minor' : 2,
+                    'trivial' : 3
+                };
+            todo_list.sort(function (task1, task2) {
+                return priorities[task1.priority] - priorities[task2.priority];
+            });
+
+            printList (todo_list);
+
+        }
+
+        function markTaskAsFinish (id){
+            for (var i = 0; i<todo_list.length; i++){
+                if (todo_list[i].id == id){
+                    var curState = todo_list[i].isFinish;
+                    var newState = !curState;
+                    todo_list[i].isFinish = newState;
+                    break;
+                }
+            } 
+            printList(todo_list)
+        }
+
+        function removeTaskById (id){
+            var tempArr = [];
+            for (var i = 0; i<todo_list.length; i++){
+                if (todo_list[i].id!=id){
+                    tempArr.push(todo_list[i]);
+                }
+            }
+            todo_list =  tempArr;
+            printList(todo_list)
+        }
+        function printList (todo_list){
+            var resultNode = document.getElementById("myUL");
+
+            while (resultNode.firstChild) {
+                resultNode.removeChild(resultNode.firstChild);
+            }
+            for(var i =0; i < todo_list.length; i++){
+                var li = document.createElement("li");
+                var t = document.createTextNode(todo_list[i].task);
+                var gId = todo_list[i].id;
+
+                li.id = gId;
+                li.appendChild(t);
+                li.onclick = function(){
+                    markTaskAsFinish(this.id);
+                }
+
+                var prior = document.createElement("span");
+                var priorTxt = document.createTextNode(todo_list[i].priority);
+                prior.className = "priority";
+                prior.appendChild(priorTxt);
+                li.appendChild(prior);
+
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close";
+                span.id = gId;
+                span.onclick = function(){
+                    removeTaskById(this.id);
+                }
+                span.appendChild(txt);
+                li.appendChild(span);
+
+                document.getElementById("myUL").appendChild(li);
+                document.getElementById("myInput").value = "";
+
+                var isTaskFinished = todo_list[i].isFinish;
+                if (isTaskFinished){
+                    var curElem = document.getElementsByTagName("li");
+                    for (var j = 0; j<curElem.length; j++){
+                        if(curElem[j].id == todo_list[i].id){
+                            curElem[j].className = "checked";
+                            curElem[j].childNodes[1].classList.toggle("checked");
+                        }
+                    }
+                    document.getElementById(todo_list[i].id).className = "checked";
+                }
+
+                if(todo_list[i].priority == pro_array[0]){
+                    prior.style.backgroundColor = "#f44336";
+                }
+                if(todo_list[i].priority == pro_array[1]){
+                    prior.style.backgroundColor = "#FF8C00";
+                }
+                if(todo_list[i].priority == pro_array[2]){
+                    prior.style.backgroundColor = "#228B22";
+                }
+                if(todo_list[i].priority == pro_array[3]){
+                    prior.style.backgroundColor = "#4682B4";
+                }
+            }
+
+            saveAtLocalStorage(todo_list);
+
+        }
+
+    </script>
+</body>
+</html>
